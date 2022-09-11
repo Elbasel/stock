@@ -1,0 +1,70 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.green-button-shadow {
+  box-shadow: -2px 2px 1px 1px green;
+}
+
+.red-button-shadow {
+  box-shadow: -2px 2px 1px 1px rgb(105, 14, 14);
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+::-webkit-scrollbar-track {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb {
+  background-color: #11171a;
+  border-radius: 10px;
+}
+
+select {
+  -moz-appearance: none; /* Firefox */
+  -webkit-appearance: none; /* Safari and Chrome */
+  appearance: none;
+}
+
+.mantine-NativeSelect-label {
+  color: white;
+  text-transform: capitalize;
+  margin-block: 10px;
+  font-size: 16px;
+}
+
+.mantine-Button-root	{
+  @apply bg-cyan-500 mt-2
+}
+
+
+.scale-in {
+  animation: scale-in 100ms linear;
+}
+
+input {
+  background-color: #2C2E33 !important;
+}
+
+.searchBar {
+  top: 0;
+  left: 0px;
+  -webkit-backface-visibility: hidden;
+
+}
+
+@keyframes scale-in {
+  0% {
+    opacity: 0.7;
+    transform: scale(0.8);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  
+}
