@@ -1,3 +1,5 @@
+import { AiOutlineDelete } from "react-icons/ai";
+
 export const Item = ({
   title,
   imageUrl,
@@ -5,6 +7,7 @@ export const Item = ({
   onIncrement,
   onDecrement,
   onCountEdit,
+  onDelete,
 }) => {
   return (
     <div className="flex gap-4 border-2 rounded-md items-center w-full">
@@ -12,8 +15,13 @@ export const Item = ({
         className="w-32 h-[120px] object-cover rounded-md q"
         src={imageUrl}
       />
-      <div className="flex flex-col gap-4">
-        <h2 className="capitalize text-3xl font-semibold">{title}</h2>
+      <div className="flex flex-col gap-4 flex-1 pr-4">
+        <div className="flex justify-between">
+          <h2 className="capitalize text-3xl font-semibold">{title}</h2>
+          <button onClick={onDelete} className="active:scale-95">
+            <AiOutlineDelete size={27} color="red" />
+          </button>
+        </div>
         <div className="flex gap-2 items-center">
           <button
             onClick={onDecrement}
@@ -22,6 +30,11 @@ export const Item = ({
             -
           </button>
           <p
+            onKeyDown={(e) => {
+              if (e.key === "Enter") {
+                e.target.blur();
+              }
+            }}
             suppressContentEditableWarning={true}
             contentEditable={true}
             onBlur={(e) => onCountEdit(e.target.textContent)}

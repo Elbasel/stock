@@ -4,6 +4,7 @@ import { useFormikContext } from "formik";
 export function SubmitButton({ onSubmit }) {
   const { submitForm, values } = useFormikContext();
   const handleSubmit = () => {
+    onSubmit();
     submitForm();
   };
 

@@ -53,8 +53,13 @@ export const AddItem = ({ onAdd }) => {
             <TextInput name="title" />
             <QuantityInput theme="dark" label="count" name="count" />
             <ListPicker name="category" values={["one", "two"]} />
-            <ImageInput name="imageUrl" />
-            <SubmitButton />
+            {/* <ImageInput name="imageUrl" /> */}
+            <TextInput name="imageUrl" label="Image Url" />
+            <SubmitButton
+              onSubmit={() => {
+                setModalHidden(true);
+              }}
+            />
           </Form>
         </div>
       </div>

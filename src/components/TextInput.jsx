@@ -1,14 +1,15 @@
 import React from "react";
 import { useFormikContext } from "formik";
 
-export const TextInput = ({ name, width = "w-full" }) => {
+export const TextInput = ({ name, label, width = "w-full" }) => {
   const { setFieldValue, errors, touched, setFieldTouched } =
     useFormikContext();
+
   return (
     <div className={`${width}  mt-2 `}>
       <div className="flex items-center">
         <label htmlFor={name} className="text-white capitalize mr-3">
-          {name}:
+          {label || name}:
         </label>
         <input
           onInput={(e) => setFieldValue(name, e.target.value)}

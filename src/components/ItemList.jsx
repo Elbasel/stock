@@ -8,11 +8,12 @@ export const ItemList = ({
   onItemIncrement,
   onItemDecrement,
   OnItemCountEdit,
+  onItemDelete,
 }) => {
   return (
     <>
       {items.length >= 1 ? (
-        <div className="min-w-fit w-full p-2 flex flex-col items-center sm:w-1/2 gap-4  max-h-full overflow-y-scroll ">
+        <div className="min-w-fit w-full p-2 flex flex-col items-center sm:w-1/2 gap-4  max-h-[80%] overflow-y-scroll ">
           {items.map((i) => (
             <Item
               title={i.get("title")}
@@ -21,6 +22,7 @@ export const ItemList = ({
               count={i.get("count")}
               onIncrement={() => onItemIncrement(i.id)}
               onDecrement={() => onItemDecrement(i.id)}
+              onDelete={() => onItemDelete(i.id)}
               onCountEdit={(newCount) => OnItemCountEdit(i.id, newCount)}
             />
           ))}

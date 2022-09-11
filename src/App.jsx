@@ -12,6 +12,7 @@ Parse.initialize(
   "wqlg8l2fnyxmFdmhPJYTOTV4rdAxrIl3XnOw2otE"
 );
 
+//creating items
 // (async () => {
 //   const myNewObject = new Parse.Object("item");
 //   myNewObject.set("title", "A string");
@@ -62,29 +63,6 @@ function isNumeric(str) {
     !isNaN(parseFloat(str))
   ); // ...and ensure strings of whitespace fail
 }
-const items = [
-  {
-    id: 0,
-    title: "Flower",
-    count: 2,
-    imageUrl:
-      "https://images.pexels.com/photos/60597/dahlia-red-blossom-bloom-60597.jpeg?cs=srgb&dl=pexels-pixabay-60597.jpg&fm=jpg",
-  },
-  {
-    id: 1,
-    title: "Car",
-    count: 3,
-    imageUrl:
-      "https://www.lamborghini.com/sites/it-en/files/DAM/lamborghini/facelift_2019/homepage/families-gallery/2022/04_12/family_chooser_tecnica_m.png",
-  },
-  {
-    id: 2,
-    title: "House",
-    count: 99,
-    imageUrl:
-      "https://q4g9y5a8.rocketcdn.me/wp-content/uploads/2020/02/home-banner-2020-02-min.jpg",
-  },
-];
 
 function App() {
   const [itemsState, setItemsState] = useState([]);
@@ -147,28 +125,50 @@ function App() {
       })();
       console.log("object updated");
     });
+
+    subscription.on("create", (object) => {
+      refreshData();
+    });
+
+    subscription.on("delete", (object) => {
+      refreshData();
+    });
   }, []);
 
   const [filteredItems, setFilteredItems] = useState(null);
+
+  const refreshData = () => {
+    (async () => {
+      const item = Parse.Object.extend("item");
+      const query = new Parse.Query(item);
+      // You can also query by using a parameter of an object
+      // query.equalTo('id', 'xKue915KBG');
+      try {
+        const results = await query.find();
+        setItemsState(results);
+        for (const object of results) {
+          // Access the Parse Object attributes using the .GET method
+          // const title = object.get("title");
+          // const count = object.get("count");
+          // const imageUrl = object.get("imageUrl");
+          // console.log(title);
+          // console.log(count);
+          // console.log(imageUrl);
+        }
+      } catch (error) {
+        console.error("Error while fetching item", error);
+      }
+    })();
+  };
 
   const handleIncrement = async (id) => {
     const item = Parse.Object.extend("item");
     const query = new Parse.Query(item);
     try {
-      // here you put the id that you want to update
       const object = await query.get(id);
-      // object.set("title", "updated string");
       object.set("count", object.get("count") + 1);
-      // object.set("imageUrl", "A string");
       try {
         const response = await object.save();
-        // You can use the "get" method to get the value of an attribute
-        // Ex: response.get("<ATTRIBUTE_NAME>")
-        // Access the Parse Object attributes using the .GET method
-        // console.log(response.get("title"));
-        // console.log(response.get("count"));
-        // console.log(response.get("imageUrl"));
-        // console.log("item updated", response);
       } catch (error) {
         console.error("Error while updating item", error);
       }
@@ -176,49 +176,68 @@ function App() {
       console.error("Error while retrieving object item", error);
     }
 
-    if (filteredItems) {
-      setFilteredItems(
-        filteredItems.map((item) =>
-          item.id === id ? { ...item, count: item.get("count") + 1 } : item
-        )
-      );
-    }
+    // if (filteredItems) {
+    //   setFilteredItems(
+    //     filteredItems.map((item) =>
+    //       item.id === id ? { ...item, count: item.get("count") + 1 } : item
+    //     )
+    //   );
+    // }
   };
 
-  const handleDecrement = (id) => {
-    setItemsState(
-      itemsState.map((item) =>
-        item.id === id ? { ...item, count: item.get("count") - 1 } : item
-      )
-    );
-    if (filteredItems) {
-      setFilteredItems(
-        filteredItems.map((item) =>
-          item.id === id ? { ...item, count: item.get("count") - 1 } : item
-        )
-      );
+  const handleDecrement = async (id) => {
+    const item = Parse.Object.extend("item");
+    const query = new Parse.Query(item);
+    try {
+      const object = await query.get(id);
+      object.set("count", object.get("count") - 1);
+      try {
+        const response = await object.save();
+      } catch (error) {
+        console.error("Error while updating item", error);
+      }
+    } catch (error) {
+      console.error("Error while retrieving object item", error);
     }
+
+    // if (filteredItems) {
+    //   setFilteredItems(
+    //     filteredItems.map((item) =>
+    //       item.id === id ? { ...item, count: item.get("count") - 1 } : item
+    //     )
+    //   );
+    // }
   };
 
-  const handleCountEdit = (id, newCount) => {
+  const handleCountEdit = async (id, newCount) => {
     if (!isNumeric(newCount)) {
       alert("Must be a number!");
       setItemsState(items);
       setFilteredItems(filteredItems);
       return;
     }
-    setItemsState(
-      itemsState.map((item) =>
-        item.id === id ? { ...item, count: +newCount } : item
-      )
-    );
-    if (filteredItems) {
-      setFilteredItems(
-        filteredItems.map((item) =>
-          item.id === id ? { ...item, count: +newCount } : item
-        )
-      );
+
+    const item = Parse.Object.extend("item");
+    const query = new Parse.Query(item);
+    try {
+      const object = await query.get(id);
+      object.set("count", +newCount);
+      try {
+        const response = await object.save();
+      } catch (error) {
+        console.error("Error while updating item", error);
+      }
+    } catch (error) {
+      console.error("Error while retrieving object item", error);
     }
+
+    // if (filteredItems) {
+    //   setFilteredItems(
+    //     filteredItems.map((item) =>
+    //       item.id === id ? { ...item, count: +newCount } : item
+    //     )
+    //   );
+    // }
   };
 
   const handleSearchInput = (value) => {
@@ -227,13 +246,43 @@ function App() {
     } else
       setFilteredItems(
         itemsState.filter((item) => {
-          return item.title.toLowerCase().includes(value.toLowerCase());
+          return item.get("title").toLowerCase().includes(value.toLowerCase());
         })
       );
   };
 
   const handleAdd = (v) => {
-    setItemsState(itemsState.concat(v));
+    // setItemsState(itemsState.concat(v));
+
+    (async () => {
+      const myNewObject = new Parse.Object("item");
+      myNewObject.set("title", v.title);
+      myNewObject.set("count", v.count);
+      myNewObject.set("imageUrl", v.imageUrl);
+      try {
+        const result = await myNewObject.save();
+        // Access the Parse Object attributes using the .GET method
+        console.log("item created", result);
+      } catch (error) {
+        console.error("Error while creating item: ", error);
+      }
+    })();
+  };
+
+  const handleItemDelete = async (id) => {
+    const query = new Parse.Query("item");
+    try {
+      // here you put the objectId that you want to delete
+      const object = await query.get(id);
+      try {
+        const response = await object.destroy();
+        console.log("Deleted ParseObject", response);
+      } catch (error) {
+        console.error("Error while deleting ParseObject", error);
+      }
+    } catch (error) {
+      console.error("Error while retrieving ParseObject", error);
+    }
   };
 
   return (
@@ -251,6 +300,7 @@ function App() {
           onItemIncrement={handleIncrement}
           onItemDecrement={handleDecrement}
           OnItemCountEdit={handleCountEdit}
+          onItemDelete={handleItemDelete}
         />
       </div>
     </MantineProvider>
