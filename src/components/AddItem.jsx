@@ -8,7 +8,6 @@ import { Form } from "./Form";
 import { QuantityInput } from "./NumberInput";
 import { AiFillCloseCircle } from "react-icons/ai";
 import * as Yup from "yup";
-import { ImageInput } from "./ImageInput";
 
 const validationSchema = Yup.object().shape({
   count: Yup.number().required().label("count"),
@@ -38,7 +37,7 @@ export const AddItem = ({ onAdd }) => {
               className="active:scale-95"
               onClick={() => setModalHidden(true)}
             >
-              <AiFillCloseCircle size={32} color="#FDC9C9" />
+              <AiFillCloseCircle size={49} color="#FDC9C9" />
             </button>
           </div>
           <Form
