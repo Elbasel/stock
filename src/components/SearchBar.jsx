@@ -2,7 +2,7 @@ import { BiSearch } from "react-icons/bi";
 
 export const SearchBar = ({ onSearchInput }) => {
   return (
-    <div className="searchBar p-2  fixed bg-[#1A1B1E] z-10">
+    <div className="searchBar p-2 sm:w-1/2 w-full fixed bg-[#1A1B1E] z-10">
       <BiSearch
         className="absolute z-10 left-5 top-5"
         size={30}
