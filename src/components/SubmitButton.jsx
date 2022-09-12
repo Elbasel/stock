@@ -2,10 +2,10 @@ import { Button } from "@mantine/core";
 import { useFormikContext } from "formik";
 
 export function SubmitButton({ onSubmit }) {
-  const { submitForm, values } = useFormikContext();
+  const { submitForm, errors } = useFormikContext();
   const handleSubmit = () => {
-    onSubmit();
     submitForm();
+    if (Object.keys(errors).length === 0) onSubmit();
   };
 
   return (

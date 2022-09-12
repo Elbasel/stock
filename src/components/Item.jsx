@@ -4,23 +4,27 @@ export const Item = ({
   title,
   imageUrl,
   count,
+  category,
   onIncrement,
   onDecrement,
   onCountEdit,
   onDelete,
 }) => {
   return (
-    <div className="flex gap-4 border-2 rounded-md items-center w-full">
+    <div className="flex gap-4 border-2 rounded-md items-center w-full min-h-[150px]">
       <img
-        className="w-32 h-[120px] object-cover rounded-md q"
+        className="w-32 h-[120px] object-cover rounded-md border-none outline-none"
         src={imageUrl}
       />
       <div className="flex flex-col gap-4 flex-1 pr-4">
-        <div className="flex justify-between">
-          <h2 className="capitalize text-3xl font-semibold">{title}</h2>
-          <button onClick={onDelete} className="active:scale-95">
-            <AiOutlineDelete size={27} color="red" />
-          </button>
+        <div>
+          <div className="flex justify-between">
+            <h2 className="capitalize text-3xl font-semibold">{title}</h2>
+            <button onClick={onDelete} className="active:scale-95">
+              <AiOutlineDelete size={27} color="red" />
+            </button>
+          </div>
+          <p>{category}</p>
         </div>
         <div className="flex gap-2 items-center">
           <button

@@ -15,11 +15,11 @@ const validationSchema = Yup.object().shape({
   category: Yup.string().required().label("Category"),
 });
 
-export const AddItem = ({ onAdd }) => {
+export const AddItem = ({ onAdd, categories }) => {
   const [modelHidden, setModalHidden] = useState(true);
 
   return (
-    <div className=" w-full sm:w-1/2 text-3xl">
+    <div className=" w-full  text-3xl">
       <div className=" rounded-md m-3 bg-green-600  flex items-center text-white relative ">
         <p className="p-5">Add Item</p>
         <button
@@ -45,13 +45,17 @@ export const AddItem = ({ onAdd }) => {
               count: 1,
               title: "",
               category: "",
+              imageUrl: "",
             }}
             validationSchema={validationSchema}
             onSubmit={(v) => onAdd(v)}
           >
             <TextInput name="title" />
             <QuantityInput theme="dark" label="count" name="count" />
-            <ListPicker name="category" values={["one", "two"]} />
+            <ListPicker
+              name="category"
+              data={categories.map((c) => c.get("name"))}
+            />
             {/* <ImageInput name="imageUrl" /> */}
             <TextInput name="imageUrl" label="Image Url" />
             <SubmitButton
