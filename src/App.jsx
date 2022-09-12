@@ -391,7 +391,7 @@ function App() {
       withGlobalStyles
       withNormalizeCSS
     >
-      <div className="flex h-screen w-screen absolute overflow-hidden sm:flex-row flex-col">
+      <div className="flex h-screen w-screen absolute sm:flex-row flex-col">
         <div className="sm:w-1/2">
           <div className=" pt-20">
             <SearchBar onSearchInput={handleSearchInput} />
@@ -409,7 +409,7 @@ function App() {
             />
           </div>
         </div>
-        <div className=" w-full sm:w-1/2 h-32 p-4 flex flex-col gap-3">
+        <div className=" w-full sm:w-1/2 h-32 p-4 flex flex-col gap-3 ">
           <h1>Categories</h1>
 
           <ul className="flex flex-col gap-3">

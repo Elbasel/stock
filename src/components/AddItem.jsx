@@ -19,14 +19,14 @@ export const AddItem = ({ onAdd, categories }) => {
   const [modelHidden, setModalHidden] = useState(true);
 
   return (
-    <div className=" w-full  text-3xl">
-      <div className=" rounded-md m-3 bg-green-600  flex items-center text-white relative ">
+    <div className=" w-full ">
+      <div className=" rounded-md m-3 h-12 bg-green-600  flex items-center text-white relative ">
         <p className="p-5">Add Item</p>
         <button
           onClick={() => setModalHidden(false)}
           className="active:scale-95 ml-auto p-5"
         >
-          <BsFillPlusCircleFill size={50} color="cyan" />
+          <BsFillPlusCircleFill size={24} color="cyan" />
         </button>
         <div
           className="scale-in w-full absolute rounded-md  bg-gray-900 z-10 p-5 mt-52"
@@ -37,7 +37,7 @@ export const AddItem = ({ onAdd, categories }) => {
               className="active:scale-95"
               onClick={() => setModalHidden(true)}
             >
-              <AiFillCloseCircle size={49} color="#FDC9C9" />
+              <AiFillCloseCircle size={32} color="#FDC9C9" />
             </button>
           </div>
           <Form

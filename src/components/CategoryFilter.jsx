@@ -7,7 +7,7 @@ export const CategoryFilter = ({ categories, onFilterClick }) => {
   };
 
   return (
-    <div className="w-full flex gap-2 p-4">
+    <div className="w-full flex gap-2 overflow-x-auto">
       {categories.map((c) => (
         <FilterItem key={c.id} text={c.get("name")} onClick={handleClick} />
       ))}
