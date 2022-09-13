@@ -11,9 +11,9 @@ export const Item = ({
   onDelete,
 }) => {
   return (
-    <div className="flex gap-4 border-2 rounded-md items-center w-full min-h-[100px]">
+    <div className="flex gap-4 border-2 rounded-md items-center w-full min-h-[140px]">
       <img
-        className="w-32 max-h-40 object-cover h-full rounded-md border-none outline-none"
+        className="w-32 max-h-28 object-cover h-full rounded-md border-none outline-none"
         src={imageUrl}
       />
       <div className="flex flex-col gap-4 flex-1 pr-4 ">

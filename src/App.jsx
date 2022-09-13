@@ -318,6 +318,7 @@ function App() {
       debugger;
       try {
         await parseFile.save();
+
         v.imageFile = parseFile.url();
       } catch (error) {
         console.log(error);
