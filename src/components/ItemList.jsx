@@ -13,7 +13,7 @@ export const ItemList = ({
   return (
     <>
       {items.length >= 1 ? (
-        <div className="min-w-fit w-full p-2 flex flex-col items-center  gap-4  max-h-[400px] overflow-y-scroll ">
+        <div className="min-w-fit min-h-[400px] w-full p-2 flex flex-col items-center  gap-4  max-h-[400px] overflow-y-scroll ">
           {items.map((i) => (
             <Item
               title={i.get("title")}

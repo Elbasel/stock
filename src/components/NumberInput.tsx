@@ -23,7 +23,6 @@ const useStyles = createStyles((theme) => ({
   control: {
     backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[7] : theme.white,
     border: `1px solid ${theme.colorScheme === 'dark' ? 'transparent' : theme.colors.gray[3]}`,
-
     '&:disabled': {
       borderColor: theme.colorScheme === 'dark' ? 'transparent' : theme.colors.gray[3],
       opacity: 0.8,
@@ -31,7 +30,11 @@ const useStyles = createStyles((theme) => ({
     },
   },
 
+  label: {
+    fontSize: "32px",
+  },
   input: {
+    fontSize: "24px",
     textAlign: 'center',
     paddingRight: `${theme.spacing.sm}px !important`,
     paddingLeft: `${theme.spacing.sm}px !important`,
@@ -54,7 +57,7 @@ export function QuantityInput({ min = 1, max, label, name }: QuantityInputProps)
 
   return (
 <div className='flex items-center gap-2'>
-<label className='capitalize flex items-center text-white'>{label}</label>
+<label className='capitalize flex items-center text-white sm:text-2xl'>{label}</label>
     <div className={classes.wrapper}>
       <ActionIcon<'button'>
         size={28}

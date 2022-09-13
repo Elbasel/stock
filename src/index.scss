@@ -56,6 +56,12 @@ input {
 
 }
 
+.asterisk::after {
+  content: "*";
+  color: red;
+
+}
+
 @keyframes scale-in {
   0% {
     opacity: 0.7;

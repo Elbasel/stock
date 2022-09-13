@@ -13,6 +13,7 @@ specifiers:
   formik: ^2.2.9
   parse: ^3.4.4
   postcss: ^8.4.16
+  pubsub-js: ^1.9.4
   react: ^18.2.0
   react-dom: ^18.2.0
   react-icons: ^4.4.0
@@ -29,6 +30,7 @@ dependencies:
   '@tabler/icons': 1.95.0_biqbaboplfbrettd7655fr4n2y
   formik: 2.2.9_react@18.2.0
   parse: 3.4.4
+  pubsub-js: 1.9.4
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
   react-icons: 4.4.0_react@18.2.0
@@ -1548,6 +1550,10 @@ packages:
 
   /property-expr/2.0.5:
     resolution: {integrity: sha512-IJUkICM5dP5znhCckHSv30Q4b5/JA5enCtkRHYaOVOAocnH/1BQEYTC5NMfT3AVl/iXKdr3aqQbQn9DxyWknwA==}
+    dev: false
+
+  /pubsub-js/1.9.4:
+    resolution: {integrity: sha512-hJYpaDvPH4w8ZX/0Fdf9ma1AwRgU353GfbaVfPjfJQf1KxZ2iHaHl3fAUw1qlJIR5dr4F3RzjGaWohYUEyoh7A==}
     dev: false
 
   /queue-microtask/1.2.3:

@@ -306,18 +306,38 @@ function App() {
     );
   };
 
-  const handleAdd = (v) => {
+  const handleAdd = async (v) => {
     // setItemsState(itemsState.concat(v));
 
-    if (v.imageUrl === "") {
-      v.imageUrl = `https://ui-avatars.com/api/?name=${v.title}&background=0D8ABC&color=fff`;
+    if (v.imageFile === "") {
+      v.imageFile = `https://ui-avatars.com/api/?name=${v.title}&background=0D8ABC&color=fff`;
+    } else {
+      // debugger;
+      var parseFile = new Parse.File(v.imageFile.name, v.imageFile);
+
+      debugger;
+      try {
+        await parseFile.save();
+        v.imageFile = parseFile.url();
+      } catch (error) {
+        console.log(error);
+      }
+
+      // .then(
+      //   () => {
+      //     v.imageFile = parseFile.url();
+      //   },
+      //   function (error) {
+      //     alert(error);
+      //   }
+      // );
     }
 
     (async () => {
       const myNewObject = new Parse.Object("item");
       myNewObject.set("title", v.title);
       myNewObject.set("count", v.count);
-      myNewObject.set("imageUrl", v.imageUrl);
+      myNewObject.set("imageUrl", v.imageFile);
       myNewObject.set("category", v.category);
       try {
         const result = await myNewObject.save();
@@ -418,7 +438,7 @@ function App() {
                 key={c.id}
                 className=" bg-red-300 p-2 rounded-md flex justify-between items-center"
               >
-                <li className="text-3xl text-black capitalize ">
+                <li className="text-xl text-black capitalize ">
                   {c.get("name")}
                 </li>
                 <button

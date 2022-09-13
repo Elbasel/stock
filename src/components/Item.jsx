@@ -11,28 +11,28 @@ export const Item = ({
   onDelete,
 }) => {
   return (
-    <div className="flex gap-4 border-2 rounded-md items-center w-full min-h-[150px]">
+    <div className="flex gap-4 border-2 rounded-md items-center w-full min-h-[100px]">
       <img
-        className="w-32 h-[120px] object-cover rounded-md border-none outline-none"
+        className="w-32 max-h-40 object-cover h-full rounded-md border-none outline-none"
         src={imageUrl}
       />
-      <div className="flex flex-col gap-4 flex-1 pr-4">
+      <div className="flex flex-col gap-4 flex-1 pr-4 ">
         <div>
           <div className="flex justify-between">
-            <h2 className="capitalize text-3xl font-semibold">{title}</h2>
+            <h2 className="capitalize text-xl font-semibold">{title}</h2>
             <button onClick={onDelete} className="active:scale-95">
-              <AiOutlineDelete size={27} color="red" />
+              <AiOutlineDelete size={20} color="red" />
             </button>
           </div>
-          <p>{category}</p>
+          <p className="mt-2">{category}</p>
         </div>
-        <div className="flex gap-2 items-center">
-          <button
+        <div className="flex gap-2 items-center ">
+          {/* <button
             onClick={onDecrement}
-            className="bg-red-700 red-button-shadow text-2xl w-12 h-12 flex justify-center items-center rounded-sm text-white active:scale-95"
+            className="bg-red-700 red-button-shadow p-2 flex justify-center items-center rounded-sm text-white active:scale-95"
           >
             -
-          </button>
+          </button> */}
           <p
             onKeyDown={(e) => {
               if (e.key === "Enter") {
@@ -42,16 +42,16 @@ export const Item = ({
             suppressContentEditableWarning={true}
             contentEditable={true}
             onBlur={(e) => onCountEdit(e.target.textContent)}
-            className="text-center flex-1 text-4xl p-2 max-h-[48px] w-[90px] overflow-y-hidden overflow-x-auto whitespace-nowrap bg-slate-500"
+            className="text-center  p-2 text-2xl flex-1 overflow-y-hidden overflow-x-auto whitespace-nowrap bg-slate-500"
           >
             {count}
           </p>
-          <button
+          {/* <button
             onClick={onIncrement}
-            className="bg-green-600 green-button-shadow text-2xl  w-12 h-12 flex justify-center items-center  rounded-sm text-white active:scale-95"
+            className="bg-green-600 green-button-shadow  flex justify-center items-center  rounded-sm text-white active:scale-95"
           >
             +
-          </button>
+          </button> */}
         </div>
       </div>
     </div>
